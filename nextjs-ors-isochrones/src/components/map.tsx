@@ -70,7 +70,13 @@ export default function Map() {
     setIntervalValue(value as number);
   };
   const handleChangeRangeType = (value: string) => {
+    if (value === "distance") {
     setRangeType(value);
+      setUnity("km");}
+    else if (value === "time") {
+      setRangeType(value);
+      setUnity("m");
+    }
   };
   return (
     <>
@@ -94,7 +100,7 @@ export default function Map() {
             </>
           )}
           <div>
-          <label style={{ marginRight: "10px", fontWeight: "bold" }}> Transport Mode:</label>
+            <label style={{ marginRight: "10px", fontWeight: "bold" }}> Transport Mode:</label>
             <Select
               defaultValue="distance"
               style={{ width: "100%" }}
@@ -105,19 +111,22 @@ export default function Map() {
               ]}
             />
           </div>
-          <div>
-            <Select
-              defaultValue="km"
-              style={{ width: "100%" }}
-              onChange={handleChangeUnity}
-              options={[
-                { value: 'km', label: 'Kilometers' },
-                { value: 'm', label: 'Meters' },
-              ]}
-            />
-          </div>
-          <Row>
-            <Col span={12}>
+          {rangeType === "distance" && (
+            <div>
+              <Select
+                defaultValue="km"
+                style={{ width: "100%" }}
+                onChange={handleChangeUnity}
+                options={[
+                  { value: 'km', label: 'Kilometers' },
+                  { value: 'm', label: 'Meters' },
+                ]}
+              />
+            </div>
+          )}
+
+          <Row align="middle">
+            <Col span={16}>
               <Slider
                 min={1}
                 max={20}
@@ -125,18 +134,20 @@ export default function Map() {
                 value={typeof rangeValue === 'number' ? rangeValue : 0}
               />
             </Col>
-            <Col span={4}>
+            <Col span={8} style={{ display: 'flex', alignItems: 'center' }}>
               <InputNumber
                 min={1}
                 max={20}
-                style={{ margin: '0 16px' }}
+                style={{ marginRight: 8, width: 100 }}
                 value={rangeValue}
                 onChange={onChangeRangeValue}
               />
+              <span>{rangeType =="distance"? unity : "min"}</span>
             </Col>
           </Row>
-          <Row>
-            <Col span={12}>
+          
+          <Row align="middle">
+            <Col span={16}>
               <Slider
                 min={1}
                 max={20}
@@ -144,14 +155,15 @@ export default function Map() {
                 value={typeof intervalValue === 'number' ? intervalValue : 0}
               />
             </Col>
-            <Col span={4}>
+            <Col span={8} style={{ display: 'flex', alignItems: 'center' }}>
               <InputNumber
                 min={1}
                 max={20}
-                style={{ margin: '0 16px' }}
+                style={{ marginRight: 8, width: 100 }}
                 value={intervalValue}
                 onChange={onChangeIntervalValue}
               />
+              <span>  {rangeType =="distance"? unity : "min"}</span>
             </Col>
           </Row>
 
