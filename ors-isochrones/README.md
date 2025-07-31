@@ -85,4 +85,4 @@ This project is a Next.js application that demonstrates how to use the OpenRoute
         -   `rangeValue`: The maximum range value.
         -   `intervalValue`: The interval between isochrones.
 
-## Project Structure
+
