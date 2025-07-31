@@ -71,8 +71,9 @@ export default function Map() {
   };
   const handleChangeRangeType = (value: string) => {
     if (value === "distance") {
-    setRangeType(value);
-      setUnity("km");}
+      setRangeType(value);
+      setUnity("km");
+    }
     else if (value === "time") {
       setRangeType(value);
       setUnity("m");
@@ -99,8 +100,8 @@ export default function Map() {
               </div>
             </>
           )}
-          <div>
-            <label style={{ marginRight: "10px", fontWeight: "bold" }}> Transport Mode:</label>
+          <div style={{ marginBottom: "10px" }}>
+            <label style={{ marginRight: "10px", marginBottom: "5px", fontWeight: "bold" }}> Isochrone method</label>
             <Select
               defaultValue="distance"
               style={{ width: "100%" }}
@@ -112,7 +113,8 @@ export default function Map() {
             />
           </div>
           {rangeType === "distance" && (
-            <div>
+            <div style={{ marginBottom: "10px" }}>
+              <label style={{ marginRight: "10px", marginBottom: "5px", fontWeight: "bold" }}> Unity</label>
               <Select
                 defaultValue="km"
                 style={{ width: "100%" }}
@@ -124,49 +126,52 @@ export default function Map() {
               />
             </div>
           )}
-
-          <Row align="middle">
-            <Col span={16}>
-              <Slider
-                min={1}
-                max={20}
-                onChange={onChangeRangeValue}
-                value={typeof rangeValue === 'number' ? rangeValue : 0}
-              />
-            </Col>
-            <Col span={8} style={{ display: 'flex', alignItems: 'center' }}>
-              <InputNumber
-                min={1}
-                max={20}
-                style={{ marginRight: 8, width: 100 }}
-                value={rangeValue}
-                onChange={onChangeRangeValue}
-              />
-              <span>{rangeType =="distance"? unity : "min"}</span>
-            </Col>
-          </Row>
-          
-          <Row align="middle">
-            <Col span={16}>
-              <Slider
-                min={1}
-                max={20}
-                onChange={onChangeIntervalValue}
-                value={typeof intervalValue === 'number' ? intervalValue : 0}
-              />
-            </Col>
-            <Col span={8} style={{ display: 'flex', alignItems: 'center' }}>
-              <InputNumber
-                min={1}
-                max={20}
-                style={{ marginRight: 8, width: 100 }}
-                value={intervalValue}
-                onChange={onChangeIntervalValue}
-              />
-              <span>  {rangeType =="distance"? unity : "min"}</span>
-            </Col>
-          </Row>
-
+          <div style={{ marginTop: "10px" }}>
+            <label style={{ marginRight: "10px", marginBottom: "5px", fontWeight: "bold" }}>Range</label>
+            <Row align="middle">
+              <Col span={16}>
+                <Slider
+                  min={1}
+                  max={20}
+                  onChange={onChangeRangeValue}
+                  value={typeof rangeValue === 'number' ? rangeValue : 0}
+                />
+              </Col>
+              <Col span={8} style={{ display: 'flex', alignItems: 'center' }}>
+                <InputNumber
+                  min={1}
+                  max={20}
+                  style={{ marginRight: 8, width: 100 }}
+                  value={rangeValue}
+                  onChange={onChangeRangeValue}
+                />
+                <span>{rangeType == "distance" ? unity : "min"}</span>
+              </Col>
+            </Row>
+          </div>
+          <div style={{ marginTop: "10px" }}>
+            <label style={{ marginRight: "10px", marginBottom: "5px", fontWeight: "bold" }}>Interval</label>
+            <Row align="middle">
+              <Col span={16}>
+                <Slider
+                  min={1}
+                  max={20}
+                  onChange={onChangeIntervalValue}
+                  value={typeof intervalValue === 'number' ? intervalValue : 0}
+                />
+              </Col>
+              <Col span={8} style={{ display: 'flex', alignItems: 'center' }}>
+                <InputNumber
+                  min={1}
+                  max={20}
+                  style={{ marginRight: 8, width: 100 }}
+                  value={intervalValue}
+                  onChange={onChangeIntervalValue}
+                />
+                <span>  {rangeType == "distance" ? unity : "min"}</span>
+              </Col>
+            </Row>
+          </div>
         </div>
         <div style={{ flex: 1 }}>
           <MapContainer

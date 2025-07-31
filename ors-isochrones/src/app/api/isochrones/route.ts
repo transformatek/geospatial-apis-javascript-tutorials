@@ -28,8 +28,8 @@ export async function POST(req: NextRequest) {
       {
         headers: {
             apikey:orsKey,
-            Accept: ' application/json;charset=UTF-8, */*',
-              'Content-Type': 'application/json',
+            Accept: 'application/json;charset=UTF-8, */*',
+            'Content-Type': 'application/json',
           },
       }
     )

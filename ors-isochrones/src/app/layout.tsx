@@ -14,7 +14,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Next.js ORS Isochrones Example",
+  title: "ORS Isochrones Example",
   description: "A simple Next.js app using OpenRouteService to display isochrones on a map.",
 };
 
