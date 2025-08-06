@@ -52,7 +52,7 @@ export default function Map() {
   const [unity, setUnity] = useState("km");
   const [rangeValue, setRangeValue] = useState(0);
   const [intervalValue, setIntervalValue] = useState(0);
-
+  const colors = ["blue","#4F97C1", "#A7C7E7"]
   const onChangeRangeValue: InputNumberProps['onChange'] = (value) => {
     if (Number.isNaN(value)) {
       return;
@@ -79,6 +79,7 @@ export default function Map() {
       setUnity("m");
     }
   };
+
   return (
     <>
       <div style={{ display: 'flex', height: '100vh' }}>
@@ -177,7 +178,7 @@ export default function Map() {
           <MapContainer
             center={[36.75, 3.06]}
             zoom={13}
-            style={{ height: "500px", width: "100%" }}
+            style={{ height: "100%", width: "100%" }}
           >
             <TileLayer
               attribution="&copy; OpenStreetMap contributors"
@@ -213,8 +214,10 @@ export default function Map() {
                     ([lng, lat]: [number, number]) => [lat, lng]
                   )}
                   pathOptions={{
-                    color: "blue",
-                    fillOpacity: 0.2 + idx * 0.2,
+                    color: colors[idx % colors.length],
+                    fillColor: colors[idx % colors.length],
+                    weight: 1,
+                    fillOpacity: 0.2 + idx * 0.1,
                   }}
                 />
               ))}
