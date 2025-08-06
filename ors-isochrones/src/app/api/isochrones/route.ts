@@ -20,7 +20,7 @@ export async function POST(req: NextRequest) {
       `https://api.deploily.cloud/ors/v2/isochrones/${isochronesParam.profile}`,
       {
         locations: [[lng, lat]],
-          range: [1, isochronesParam.rangeValue],
+          range: isochronesParam.rangeType=="distance" ? [1, isochronesParam.rangeValue, 30]:[ isochronesParam.rangeValue/2*60,isochronesParam.rangeValue*60, 30*60],
           interval: isochronesParam.intervalValue,
           units: isochronesParam.unity,
           range_type: isochronesParam.rangeType,
